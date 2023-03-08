@@ -36,7 +36,7 @@ const Group = ({ title, icon, children, active, open }: GroupProps) => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    minWidth: 144,
+    minWidth: 256,
     borderRadius: '$4',
     padding: '$4 $4',
     gap: '$2',
