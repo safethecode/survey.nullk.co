@@ -64,10 +64,12 @@ const Item = ({ id, title, active, descriptions }: ItemProps) => {
   const TitleInner = styled('div', {
     display: 'flex',
     flex: '1 0 auto',
+    minWidth: 450,
     gap: '$4',
 
     '@media (max-width: 1024px)': {
       width: '100%',
+      minWidth: 'unset',
       flexDirection: 'column',
       gap: '$3',
 
@@ -108,14 +110,21 @@ const Item = ({ id, title, active, descriptions }: ItemProps) => {
     gap: '$2',
   });
 
+  const BadgeContainer = styled('div', {
+    display: 'flex',
+    minWidth: 56,
+  });
+
   return (
     <ItemContainer>
       <TitleInner>
-        {active ? (
-          <Badge color="green">진행 중</Badge>
-        ) : (
-          <Badge color="red">종료</Badge>
-        )}
+        <BadgeContainer>
+          {active ? (
+            <Badge color="green">진행 중</Badge>
+          ) : (
+            <Badge color="red">종료</Badge>
+          )}
+        </BadgeContainer>
         <ItemTitle>{title}</ItemTitle>
       </TitleInner>
       <DescriptionList>
