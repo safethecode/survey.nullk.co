@@ -1,4 +1,5 @@
-import { useCallback, HTMLAttributes } from 'react';
+import { IconChevronDown, IconChevronRight } from '@supabase/ui';
+import { useCallback, HTMLAttributes, useState } from 'react';
 import { styled } from 'styles/stitches';
 
 interface SideMenuProps {
@@ -21,10 +22,11 @@ interface GroupProps {
   icon?: React.ReactNode;
   children: React.ReactNode;
   active?: boolean;
+  open?: boolean;
   onClick?: () => void;
 }
 
-const Group = ({ title, icon, children, active }: GroupProps) => {
+const Group = ({ title, icon, children, active, open }: GroupProps) => {
   const GroupContainer = styled('ul', {
     display: 'flex',
     flexDirection: 'column',
@@ -32,31 +34,39 @@ const Group = ({ title, icon, children, active }: GroupProps) => {
 
   const GroupInner = styled('div', {
     display: 'flex',
+    justifyContent: 'space-between',
     alignItems: 'center',
     minWidth: 144,
     borderRadius: '$4',
-    backgroundColor: '#0596691A',
     padding: '$4 $4',
     gap: '$2',
     userSelect: 'none',
     cursor: 'pointer',
+    marginBottom: '$2',
 
     variants: {
       active: {
         true: {
-          backgroundColor: '#0596691A',
+          backgroundColor: '#F3F4F6',
           '& > h3': {
-            color: '#10B981',
+            color: '$grey700',
           },
         },
         false: {
-          backgroundColor: '#F3F4F6',
           '& > h3': {
             fontWeight: 500,
             color: '$grey400',
           },
           '& > span > svg': {
             stroke: '$grey400',
+          },
+          '& > svg': {
+            stroke: '$grey400',
+          },
+          transition: 'background-color 0.2s ease-in-out',
+          '&:hover': {
+            transition: 'background-color 0.2s ease-in-out',
+            backgroundColor: '#F5F6F8',
           },
         },
       },
@@ -69,15 +79,27 @@ const Group = ({ title, icon, children, active }: GroupProps) => {
   const GroupTitle = styled('h3', {
     fontSize: 14,
     fontWeight: 'bold',
+    flex: '1 0 auto',
   });
+
+  const [isOpen, setIsOpen] = useState(open);
+
+  const handleClick = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
 
   return (
     <GroupContainer>
-      <GroupInner active={active}>
+      <GroupInner onClick={handleClick} active={active}>
         {icon && <span>{icon}</span>}
         <GroupTitle>{title}</GroupTitle>
+        {isOpen ? (
+          <IconChevronDown strokeWidth={2} size={14} stroke="#212121" />
+        ) : (
+          <IconChevronRight strokeWidth={2} size={14} stroke="#212121" />
+        )}
       </GroupInner>
-      {children}
+      {isOpen && children}
     </GroupContainer>
   );
 };
@@ -86,19 +108,25 @@ const Item = ({ icon, children, active, onClick }: GroupProps) => {
   const ItemContainer = styled('li', {
     display: 'flex',
     alignItems: 'center',
+    borderRadius: '$4',
     padding: '$4 $6',
     gap: '$2',
     userSelect: 'none',
     cursor: 'pointer',
 
+    transition: 'background-color 0.2s ease-in-out',
+    '&:hover': {
+      transition: 'background-color 0.2s ease-in-out',
+      backgroundColor: '#F5F6F8',
+    },
     variants: {
       active: {
         true: {
           '& > h3': {
-            color: '#212121',
+            color: '$grey700',
           },
           '& > span > svg': {
-            stroke: '#212121',
+            stroke: '#grey700',
           },
         },
         false: {
