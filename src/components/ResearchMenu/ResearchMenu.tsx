@@ -162,7 +162,7 @@ Item.defaultProps = {
     {
       category: {
         categoryTitle: '생산성',
-        icon: <IconTool strokeWidth={2} size={12} stroke="#212121" />,
+        icon: <IconTool strokeWidth={2} size={12} stroke="#6B7684" />,
       },
     },
   ],
@@ -187,7 +187,7 @@ const NoneResearchItem = () => {
 
   return (
     <NoneResearchItemContainer>
-      <IconDatabase strokeWidth={2} size={16} stroke="#212121" />
+      <IconDatabase strokeWidth={2} size={16} stroke="#333d4b" />
       <Description>진행 중인 리서치가 없습니다.</Description>
     </NoneResearchItemContainer>
   );
