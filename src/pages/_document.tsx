@@ -16,6 +16,14 @@ class _Document extends Document {
             id="stitches"
             dangerouslySetInnerHTML={{ __html: stitchesReset() }}
           />
+          <meta
+            property="og:title"
+            content="survey.nullk.co - 널널K 전용 정량적 리서치 서비스, NullK Survey"
+          />
+          <meta
+            property="og:image"
+            content="/images/opengraph-background.png"
+          />
         </Head>
         <body>
           <Main />
