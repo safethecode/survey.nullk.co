@@ -63,7 +63,6 @@ const Item = ({ id, title, active, descriptions }: ItemProps) => {
 
   const TitleInner = styled('div', {
     display: 'flex',
-    flex: '1 0 auto',
     minWidth: 450,
     gap: '$4',
 
@@ -105,7 +104,7 @@ const Item = ({ id, title, active, descriptions }: ItemProps) => {
 
   const DescriptionList = styled('div', {
     display: 'flex',
-    flex: '1 0 auto',
+    flex: '0.5 0 auto',
     justifyContent: 'space-between',
     gap: '$2',
   });
